@@ -74,6 +74,33 @@ public class UserView {
 		}
 	}
 
+	public boolean getAllUser() {
+		List<User> users = userControllers.getAllUser();
+
+		if(users.isEmpty()) {
+			return false;
+		} else {
+			int line = 150;
+			for (int i = 0; i < line; i++) {
+				System.out.print("-");
+			}
+			System.out.println();
+			System.out.println("id                                   | Username             | First name           | Last name            | Phone        | Customer email     ");
+			for (int i = 0; i < line; i++) {
+				System.out.print("-");
+			}
+			System.out.println();
+			for (User i : users) {
+				System.out.println(i.display());
+			}
+			for (int i = 0; i < line; i++) {
+				System.out.print("-");
+			}
+			System.out.println();
+			return true;
+		}
+	}
+
 	public boolean saveData() {
 		return userControllers.writeDataToFile();
 	}
