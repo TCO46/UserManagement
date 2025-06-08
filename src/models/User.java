@@ -88,4 +88,8 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String display() {
+		return String.format("%-30s | %-20s | %-20s | %-20s | %-12s | %-20s", this.getId(), this.getUsername(), this.getFirstName(), this.getLastName(), this.getPhoneNumber(), this.getEmail());
+	}	
 }

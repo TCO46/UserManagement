@@ -39,7 +39,9 @@ public class Main {
 					Utils.promptEnterKey();
 					break;
 				case 3:
-					userView.searchByName();
+					if(!userView.searchByName()) {
+						System.out.println("Have no any user");
+					}
 					Utils.promptEnterKey();
 					break;
 				case 8:

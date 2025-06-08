@@ -6,6 +6,7 @@ package views;
 
 import Utils.Utils;
 import controllers.UserControllers;
+import java.util.List;
 import models.User;
 
 /**
@@ -50,24 +51,26 @@ public class UserView {
 		if(_user.isEmpty()) {
 			return false;
 		} else {
+			int line = 150;
 			System.out.println("Matching User: " + name);
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < line; i++) {
 				System.out.print("-");
 			}
 			System.out.println();
-			System.out.println("id                                   | Username              | Phone        | Customer email     ");
-			for (int i = 0; i < 100; i++) {
+			System.out.println("id                                   | Username             | First name           | Last name            | Phone        | Customer email     ");
+			for (int i = 0; i < line; i++) {
 				System.out.print("-");
 			}
 			System.out.println();
 			for (User i : _user) {
 				System.out.println(i.display());
 			}
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < line; i++) {
 				System.out.print("-");
 			}
 			System.out.println();
 			return true;
 		}
 	}
+
 }
