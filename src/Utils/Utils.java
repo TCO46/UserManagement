@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.regex.Pattern;
+import models.User;
 
 
 
@@ -60,7 +61,8 @@ public class Utils {
 		return result;
 	}
 
-	public static ArrayList<Object> readListOjectFromFile(String path) throws IOException {
+	@SuppressWarnings("unchecked")
+	public static List<Object> readListOjectFromFile(String path) throws IOException, ClassNotFoundException {
 		FileInputStream fis = new FileInputStream(path);
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		ArrayList<Object> list = new ArrayList();
@@ -70,8 +72,7 @@ public class Utils {
 				obj = (Object) ois.readObject();
 				list.add(obj);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (IOException | ClassNotFoundException e) {
 		} finally {
 			if (ois != null) {
 				ois.close();
