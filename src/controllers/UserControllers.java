@@ -12,6 +12,7 @@ import models.User;
 
 public class UserControllers extends ArrayList<User> implements I_User {
 
+	@Override
 	public boolean create(String username, String firstName, String lastName, String password, String phoneNumber, String email) {
 		boolean result = false;
 		String id = Utils.generateUUID();
@@ -19,7 +20,7 @@ public class UserControllers extends ArrayList<User> implements I_User {
 
 		try {
 			User newUser = new User(id, username, firstName, lastName, encryptedPassword, phoneNumber, email);
-			if(this.contains(newUser)) {
+			if(!searchByName(username).isEmpty()) {
 				System.out.println("Duplicate User!!!");
 				return false;
 			}
