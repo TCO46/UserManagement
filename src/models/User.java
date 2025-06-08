@@ -1,5 +1,7 @@
 package models;
 
+import java.io.Serializable;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,7 +11,8 @@ package models;
  *
  * @author Sigma 
  */
-public class User {
+public class User implements Serializable {
+	private static final long serialVersionUID = 5305293927933091843L;
 	private String id;
 	private String username;
 	private String firstName;
@@ -85,4 +88,8 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String display() {
+		return String.format("%-30s | %-20s | %-20s | %-20s | %-12s | %-20s", this.getId(), this.getUsername(), this.getFirstName(), this.getLastName(), this.getPhoneNumber(), this.getEmail());
+	}	
 }
