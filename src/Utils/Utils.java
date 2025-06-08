@@ -27,7 +27,6 @@ import java.io.Console;
  * @author Admin
  */
 public class Utils {
-	//private static final String USERNAME = "/^\\S{5,}$/";
 	private static final String USERNAME = "^\\S{5,}$";
 	private static final String FIRSTNAME = "^.{0,25}$";
 	private static final String LASTNAME = "^.{0,25}$";
@@ -121,7 +120,6 @@ public class Utils {
 				result = arg.matches(Utils.LASTNAME);
 				break;
 			case "password":
-				//result = arg.matches(Utils.PASSWORD);
 				result = Pattern.matches(PASSWORD, arg);
 				break;
 			case "phone":
@@ -152,6 +150,29 @@ public class Utils {
 			System.out.println("Invalid value for " + cases);
 		} while (true);
 		return arg;
+	}
+
+	public static String checkValidUpdateString(String welcome, String cases, String oldData) {
+		String newData = oldData;
+		String data = "";
+
+		do {
+			if(cases.equals("password")) {
+				data = updatePassword(welcome, oldData);
+			} else {
+				data = updateString(welcome, oldData);
+			}
+
+			if(!data.isEmpty() && Utils.isValid(data, cases)) {
+				newData = data;
+				break;
+			}
+
+			System.out.println("Invalid value for " + cases);
+
+		} while(true);
+
+		return newData;
 	}
 
 	public static String getPassword(String welcome) {
@@ -198,6 +219,38 @@ public class Utils {
 			}
 		} while (check);
 		return result;
+	}
+
+	public static String updateString(String welcome, String oldData) {
+		String newData = oldData;
+
+		Scanner sc = new Scanner(System.in);
+		System.out.print(welcome);
+		String data = sc.nextLine();
+
+		if(!data.isEmpty()) {
+			newData = data;
+		}
+
+		return newData;
+	}
+
+	public static String updatePassword(String welcome, String oldPassword) {
+		Console console = System.console();
+		String newPassword = oldPassword;
+
+		if (console == null) {
+			System.out.println("Couldn't get Console instance");
+			System.exit(0);
+		}
+
+		char[] password = console.readPassword(welcome);
+
+		if(!new String(password).isEmpty()) {
+			newPassword = new String(password);
+		}
+
+		return newPassword;
 	}
 
 	public static boolean confirmYesNo(String welcome) {

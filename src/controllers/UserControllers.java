@@ -34,11 +34,36 @@ public class UserControllers extends ArrayList<User> implements I_User {
 	}
 
 	@Override
+	public boolean update(User user, String username, String firstName, String lastName, String password, String phoneNumber, String email) {
+		String encryptedPassword = Utils.sha256(password);
+
+		user.setUsername(username);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setPassword(encryptedPassword);
+		user.setPhoneNumber(phoneNumber);
+		user.setEmail(email);
+
+		return true;
+	}
+	@Override
 	public List<User> searchByName(String username) {
 		List<User> user = new ArrayList<>();
 		for(User i : this) {
 			if(i.getUsername().contains(username.toUpperCase()) || i.getUsername().contains(username.toLowerCase())) {
 				user.add(i);
+			}
+		}
+
+		return user;
+	}
+
+	public User getUser(String username) {
+		User user = null;
+		for(User i : this) {
+			if(i.getUsername().equals(username)) {
+				user = i;
+				break;
 			}
 		}
 

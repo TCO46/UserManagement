@@ -13,9 +13,9 @@ import java.util.List;
 public interface I_User {
 	boolean create(String username, String firstName, String lastName, String password, String phoneNumber, String email);
 
-	boolean update(int id, String username, String lastName, String password, String phoneNumber, String email);
+	boolean update(User user, String username, String firstName, String lastName, String password, String phoneNumber, String email);
 
-	boolean delete(int id);
+	boolean delete(String username);
 
 	List<User> searchByName(String username);
 }
