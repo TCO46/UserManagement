@@ -37,6 +37,7 @@ public class UserView {
 
 		return false;
 	}
+
 	public boolean isUserExist() {
 		String username = Utils.getString("Enter username: ");
 		List<User> _user = userControllers.searchByName(username);
@@ -73,4 +74,7 @@ public class UserView {
 		}
 	}
 
+	public boolean saveData() {
+		return userControllers.writeDataToFile();
+	}
 }

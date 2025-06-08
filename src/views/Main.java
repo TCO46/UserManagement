@@ -44,6 +44,15 @@ public class Main {
 					}
 					Utils.promptEnterKey();
 					break;
+				case 6:
+					if(userView.saveData()) {
+						System.out.println("Successfully saved data");
+					} else {
+						System.out.println("Failed!!!");
+					}
+
+					Utils.promptEnterKey();
+					break;
 				case 8:
 					if(Utils.confirmYesNo("Are you sure? ")) {
 						cont = false;

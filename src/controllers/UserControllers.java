@@ -45,4 +45,29 @@ public class UserControllers extends ArrayList<User> implements I_User {
 		return user;
 	}
 
+	public boolean writeDataToFile() {
+		List<Object> list = new ArrayList<>();
+		for (User i : this) {
+			list.add((Object) i);
+		}
+		Utils.writeListObjectToFile("User.dat", list);
+		return true;
+	}	
+
+	public void readUser() throws ClassNotFoundException {
+		this.clear();
+		List<Object> list = new ArrayList<>();
+		try {
+			list = Utils.readListOjectFromFile("User.dat");
+		} catch (IOException ex) {
+//			Logger.getLogger(UserControllers.class.getName()).log(Level.SEVERE, null, ex);
+
+		}
+
+		for (Object ob : list) {
+			if (ob instanceof User) {
+				this.add((User) ob);
+			}
+		}
+	}
 }
