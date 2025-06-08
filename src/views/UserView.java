@@ -14,10 +14,10 @@ import models.User;
  */
 public class UserView {
 
-	private User user = new User();
-	private static UserControllers userControllers = new UserControllers();
+	private final User user = new User();
+	private static final UserControllers userControllers = new UserControllers();
 
-	public void init() {
+	public void init() throws ClassNotFoundException {
 		userControllers.readUser();
 	}
 
@@ -35,5 +35,39 @@ public class UserView {
 		}
 
 		return false;
+	}
+	public boolean isUserExist() {
+		String username = Utils.getString("Enter username: ");
+		List<User> _user = userControllers.searchByName(username);
+
+		return !_user.isEmpty();
+	}
+
+	public boolean searchByName() {
+		String name = Utils.getString("Enter User name: ");
+		List<User> _user = userControllers.searchByName(name);
+
+		if(_user.isEmpty()) {
+			return false;
+		} else {
+			System.out.println("Matching User: " + name);
+			for (int i = 0; i < 100; i++) {
+				System.out.print("-");
+			}
+			System.out.println();
+			System.out.println("id                                   | Username              | Phone        | Customer email     ");
+			for (int i = 0; i < 100; i++) {
+				System.out.print("-");
+			}
+			System.out.println();
+			for (User i : _user) {
+				System.out.println(i.display());
+			}
+			for (int i = 0; i < 100; i++) {
+				System.out.print("-");
+			}
+			System.out.println();
+			return true;
+		}
 	}
 }

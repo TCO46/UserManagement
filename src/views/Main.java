@@ -1,9 +1,12 @@
+package views;
 import Utils.Utils;
+import java.io.IOException;
 public class Main {
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, ClassNotFoundException {
 		int options;
 		boolean cont = true;
 		UserView userView = new UserView();
+		userView.init();
 
 		do {
 			System.out.println(
@@ -27,6 +30,18 @@ public class Main {
 					} else {
 						System.out.println("Failed!!!");
 					}
+				case 2:
+					if(userView.isUserExist()) {
+						System.out.println("Exist User");
+					} else {
+						System.out.println("No User Found!");
+					}
+					Utils.promptEnterKey();
+					break;
+				case 3:
+					userView.searchByName();
+					Utils.promptEnterKey();
+					break;
 				case 8:
 					if(Utils.confirmYesNo("Are you sure? ")) {
 						cont = false;

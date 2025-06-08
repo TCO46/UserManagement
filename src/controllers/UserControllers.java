@@ -33,4 +33,16 @@ public class UserControllers extends ArrayList<User> implements I_User {
 		return result;
 	}
 
+	@Override
+	public List<User> searchByName(String username) {
+		List<User> user = new ArrayList<>();
+		for(User i : this) {
+			if(i.getUsername().contains(username.toUpperCase()) || i.getUsername().contains(username.toLowerCase())) {
+				user.add(i);
+			}
+		}
+
+		return user;
+	}
+
 }
