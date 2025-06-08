@@ -45,6 +45,16 @@ public class UserControllers extends ArrayList<User> implements I_User {
 		return user;
 	}
 
+	public List<User> getAllUser() {
+		List<User> users = new ArrayList<>();
+
+		for(User i : this) {
+			users.add(i);
+		}
+
+		return users;
+	}
+
 	public boolean writeDataToFile() {
 		List<Object> list = new ArrayList<>();
 		for (User i : this) {
