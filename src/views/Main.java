@@ -21,6 +21,16 @@ public class Main {
 
 			switch(options) {
 				case 1:
+					if(userView.create()) {
+						System.out.println("Successfully created user");
+						break;
+					} else {
+						System.out.println("Failed!!!");
+					}
+				case 8:
+					if(Utils.confirmYesNo("Are you sure? ")) {
+						cont = false;
+					}
 					break;
 			}
 		} while(true && cont);
