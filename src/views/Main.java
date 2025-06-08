@@ -29,8 +29,8 @@ public class Main {
 					} else {
 						System.out.println("Failed!!!");
 					}
-					Utils.promptEnterKey();
 
+					Utils.promptEnterKey();
 					break;
 					
 				case 2:
@@ -39,13 +39,26 @@ public class Main {
 					} else {
 						System.out.println("No User Found!");
 					}
+					
 					Utils.promptEnterKey();
 					break;
 				case 3:
 					if(!userView.searchByName()) {
 						System.out.println("Have no any user");
 					}
+
 					Utils.promptEnterKey();
+					break;
+				case 4:
+					if(userView.updateUser()) {
+						System.out.println("Success");
+					} else {
+						System.out.println("Fail");
+					}
+
+					Utils.promptEnterKey();
+					break;
+				case 5:
 					break;
 				case 6:
 					if(userView.saveData()) {

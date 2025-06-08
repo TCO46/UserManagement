@@ -74,6 +74,24 @@ public class UserView {
 		}
 	}
 
+	public boolean updateUser() {
+		String username = Utils.getString("Enter username: ");
+		User _user = userControllers.getUser(username);
+		if(_user == null) {
+			System.out.println("Username does not exist");
+			return false;
+		}
+
+		String updateUsername = Utils.checkValidUpdateString("Enter username: ", "username", _user.getUsername());
+		String updateFirstName = Utils.checkValidUpdateString("Enter first name: ", "firstName", _user.getFirstName());
+		String updateLastName = Utils.checkValidUpdateString("Enter last name: ", "lastName", _user.getLastName());
+		String updatePassword = Utils.checkValidUpdateString("Enter password: ", "password", _user.getPassword());
+		String updatePhoneNumber = Utils.checkValidUpdateString("Enter phone number: ", "phone", _user.getPhoneNumber());
+		String updateEmail = Utils.checkValidUpdateString("Enter email: ", "email", _user.getEmail());
+
+		return userControllers.update(_user, updateUsername, updateFirstName, updateLastName, updatePassword, updatePhoneNumber, updateEmail);
+	}
+
 	public boolean getAllUser() {
 		List<User> users = userControllers.getAllUser();
 
