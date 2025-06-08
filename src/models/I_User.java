@@ -11,11 +11,11 @@ import java.util.List;
  * @author Admin
  */
 public interface I_User {
-	boolean create(String username, String firstName, String lastName, String password, int phoneNumber, String email);
+	boolean create(String username, String firstName, String lastName, String password, String phoneNumber, String email);
 
-	boolean update(int id, String username, String lastName, String password, int phoneNumber, String email);
+	boolean update(int id, String username, String lastName, String password, String phoneNumber, String email);
 
 	boolean delete(int id);
 
-	List<User> searchByName(String lastName);
+	List<User> searchByName(String username);
 }
