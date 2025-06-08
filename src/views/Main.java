@@ -26,10 +26,13 @@ public class Main {
 				case 1:
 					if(userView.create()) {
 						System.out.println("Successfully created user");
-						break;
 					} else {
 						System.out.println("Failed!!!");
 					}
+					Utils.promptEnterKey();
+
+					break;
+					
 				case 2:
 					if(userView.isUserExist()) {
 						System.out.println("Exist User");
@@ -50,6 +53,11 @@ public class Main {
 					} else {
 						System.out.println("Failed!!!");
 					}
+
+					Utils.promptEnterKey();
+					break;
+				case 7:
+					userView.getAllUser(); 
 
 					Utils.promptEnterKey();
 					break;
