@@ -207,4 +207,9 @@ public class Utils {
 		return number;
 	}
 
+	public static void promptEnterKey() {
+		System.out.println("Press \"ENTER\" to continue...");
+		Scanner scanner = new Scanner(System.in);
+		scanner.nextLine();
+	}
 }
