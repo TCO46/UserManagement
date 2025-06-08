@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.regex.Pattern;
-import models.User;
+import java.io.Console;
 
 
 
@@ -139,21 +139,39 @@ public class Utils {
 	public static String checkValidString(String welcome, String cases) {
 		String arg = "";
 		do {
-			arg = getString(welcome);
-			if (Utils.isValid(arg, cases)) {
-				break;
+			if(cases.equals("password")) {
+				arg = getPassword(welcome);
 			} else {
-				System.out.println("Invalid value for " + cases);
+				arg = getString(welcome);
 			}
+
+			if(Utils.isValid(arg, cases)) {
+				break;
+			}
+
+			System.out.println("Invalid value for " + cases);
 		} while (true);
 		return arg;
+	}
+
+	public static String getPassword(String welcome) {
+		Console console = System.console();
+
+		if (console == null) {
+			System.out.println("Couldn't get Console instance");
+			System.exit(0);
+		}
+
+		char[] password = console.readPassword(welcome);
+
+		return new String(password);
 	}
 
 	public static boolean confirmPassword(String welcome, String password) {
 		boolean confirm = false;
 
 		do {
-			String confirmPassword = getString("Confirm password: ");
+			String confirmPassword = getPassword(welcome);
 
 			if (password.equals(confirmPassword)) {
 				confirm = true;
