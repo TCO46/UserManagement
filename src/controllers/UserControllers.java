@@ -1,10 +1,10 @@
 package controllers;
 
 import Utils.Utils;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.I_User;
@@ -46,6 +46,30 @@ public class UserControllers extends ArrayList<User> implements I_User {
 
 		return true;
 	}
+
+	@Override
+	public boolean delete(String username) {
+		List<Object> users = getAllUserExept(username);
+
+		if(searchByName(username).isEmpty()) {
+			return false;
+		}
+
+		Utils.writeListObjectToFile("User-tmp.dat", users);
+		File oldFile = new File("User.dat");
+		oldFile.delete();
+		boolean newFile = new File("User-tmp.dat").renameTo(oldFile);
+
+		try {
+			readUser();
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(UserControllers.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		return newFile;
+
+	}
+
 	@Override
 	public List<User> searchByName(String username) {
 		List<User> user = new ArrayList<>();
@@ -80,12 +104,26 @@ public class UserControllers extends ArrayList<User> implements I_User {
 		return users;
 	}
 
-	public boolean writeDataToFile() {
+	public List<Object> getAllUserExept(String username) {
+		List<Object> users = new ArrayList<>();
+
+		for(User i : this) {
+			if(i.getUsername().equals(username)) {
+				continue;
+			}
+
+			users.add(i);
+		}
+
+		return users;
+	}
+
+	public boolean writeDataToFile(String path) {
 		List<Object> list = new ArrayList<>();
 		for (User i : this) {
 			list.add((Object) i);
 		}
-		Utils.writeListObjectToFile("User.dat", list);
+		Utils.writeListObjectToFile(path, list);
 		return true;
 	}	
 

@@ -59,6 +59,13 @@ public class Main {
 					Utils.promptEnterKey();
 					break;
 				case 5:
+					if(userView.deleteUser()) {
+						System.out.println("Successfully deleted a user");
+					} else {
+						System.out.println("Fail to delete user");
+					}
+
+					Utils.promptEnterKey();
 					break;
 				case 6:
 					if(userView.saveData()) {

@@ -118,8 +118,14 @@ public class UserView {
 			return true;
 		}
 	}
+	
+	public boolean deleteUser() {
+		String username = Utils.getString("Enter username: ");
+
+		return userControllers.delete(username);
+	}
 
 	public boolean saveData() {
-		return userControllers.writeDataToFile();
+		return userControllers.writeDataToFile("User.dat");
 	}
 }
