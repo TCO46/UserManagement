@@ -10,15 +10,17 @@ package models;
  * @author Sigma 
  */
 public class User {
-	private int id;
+	private String id;
 	private String username;
 	private String firstName;
 	private String lastName;
 	private String password;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String email;
 
-	public User(int id, String username, String firstName, String lastName, String password, int phoneNumber, String email) {
+	public User() {}
+
+	public User(String id, String username, String firstName, String lastName, String password, String phoneNumber, String email) {
 		this.id = id;
 		this.username = username;
 		this.firstName = firstName;
@@ -28,7 +30,7 @@ public class User {
 		this.email = email;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -48,7 +50,7 @@ public class User {
 		return password;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
@@ -56,7 +58,7 @@ public class User {
 		return email;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -76,13 +78,11 @@ public class User {
 		this.password = password;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
-	
 }
