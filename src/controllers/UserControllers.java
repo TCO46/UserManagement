@@ -143,4 +143,18 @@ public class UserControllers extends ArrayList<User> implements I_User {
 			}
 		}
 	}
+
+	public boolean authentication(String username, String password) {
+		User user = getUser(username);
+
+		if(user == null) {
+			return false;
+		}
+
+		if(!user.getPassword().equals(Utils.sha256(password))) {
+			return false;
+		}
+
+		return true;
+	}
 }
