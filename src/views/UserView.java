@@ -4,7 +4,7 @@
  */
 package views;
 
-import Utils.Utils;
+import utils.Utils;
 import controllers.UserControllers;
 import java.util.List;
 import models.User;
