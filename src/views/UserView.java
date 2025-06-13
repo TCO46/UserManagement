@@ -38,6 +38,13 @@ public class UserView {
 		return false;
 	}
 
+	public boolean login() {
+		String username = Utils.getString("Username: ");
+		String password = Utils.getPassword("Password: ");
+
+		return userControllers.authentication(username, password);
+	}
+
 	public boolean isUserExist() {
 		String username = Utils.getString("Enter username: ");
 		List<User> _user = userControllers.searchByName(username);
@@ -74,7 +81,12 @@ public class UserView {
 		}
 	}
 
-	public boolean updateUser() {
+	public boolean updateUser(boolean isLoggedIn) {
+		if(!isLoggedIn) {
+			System.out.println("You need to login first!");
+			return false;
+		}
+
 		String username = Utils.getString("Enter username: ");
 		User _user = userControllers.getUser(username);
 		if(_user == null) {
@@ -119,7 +131,11 @@ public class UserView {
 		}
 	}
 	
-	public boolean deleteUser() {
+	public boolean deleteUser(boolean isLoggedIn) {
+		if(!isLoggedIn) {
+			System.out.println("You need to login first!");
+			return false;
+		}
 		String username = Utils.getString("Enter username: ");
 
 		return userControllers.delete(username);

@@ -5,22 +5,24 @@ public class Main {
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
 		int options;
 		boolean cont = true;
+		boolean isLoggedIn = false;
 		UserView userView = new UserView();
 		userView.init();
 
 		do {
 			System.out.println(
 				"1. Create User Account\n" +
-				"2. Check exist user\n" +
-				"3. Search user infomation by name\n" + 
-				"4. Update user\n" +
-				"5. Delete user\n" +
-				"6. Save account to file\n" + 
-				"7. Print list user from file\n" +
-				"8. exit\n"
+				"2. Login\n" +
+				"3. Check exist user\n" +
+				"4. Search user infomation by name\n" + 
+				"5. Update user\n" +
+				"6. Delete user\n" +
+				"7. Save account to file\n" + 
+				"8. Print list user from file\n" +
+				"9. exit\n"
 			);
 
-			options = Utils.getInt("Enter option: ", 1, 8);
+			options = Utils.getInt("Enter option: ", 1, 9);
 
 			switch(options) {
 				case 1:
@@ -32,8 +34,19 @@ public class Main {
 
 					Utils.promptEnterKey();
 					break;
-					
+
 				case 2:
+					if(userView.login()) {
+						System.out.println("Login successfully!");
+						isLoggedIn = true;
+					} else {
+						System.out.println("Wrong username or password");
+					};
+
+					Utils.promptEnterKey();
+					break;
+					
+				case 3:
 					if(userView.isUserExist()) {
 						System.out.println("Exist User");
 					} else {
@@ -42,15 +55,15 @@ public class Main {
 					
 					Utils.promptEnterKey();
 					break;
-				case 3:
+				case 4:
 					if(!userView.searchByName()) {
 						System.out.println("Have no any user");
 					}
 
 					Utils.promptEnterKey();
 					break;
-				case 4:
-					if(userView.updateUser()) {
+				case 5:
+					if(userView.updateUser(isLoggedIn)) {
 						System.out.println("Success");
 					} else {
 						System.out.println("Fail");
@@ -58,8 +71,8 @@ public class Main {
 
 					Utils.promptEnterKey();
 					break;
-				case 5:
-					if(userView.deleteUser()) {
+				case 6:
+					if(userView.deleteUser(isLoggedIn)) {
 						System.out.println("Successfully deleted a user");
 					} else {
 						System.out.println("Fail to delete user");
@@ -67,7 +80,7 @@ public class Main {
 
 					Utils.promptEnterKey();
 					break;
-				case 6:
+				case 7:
 					if(userView.saveData()) {
 						System.out.println("Successfully saved data");
 					} else {
@@ -76,12 +89,12 @@ public class Main {
 
 					Utils.promptEnterKey();
 					break;
-				case 7:
+				case 8:
 					userView.getAllUser(); 
 
 					Utils.promptEnterKey();
 					break;
-				case 8:
+				case 9:
 					if(Utils.confirmYesNo("Are you sure? ")) {
 						cont = false;
 					}
