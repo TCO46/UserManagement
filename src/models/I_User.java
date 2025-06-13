@@ -18,4 +18,10 @@ public interface I_User {
 	boolean delete(String username);
 
 	List<User> searchByName(String username);
+
+	public User getUser(String username);
+
+	public List<User> getAllUser();
+
+	public boolean authentication(String username, String password);
 }

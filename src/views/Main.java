@@ -1,5 +1,6 @@
 package views;
-import Utils.Utils;
+
+import utils.Utils;
 import java.io.IOException;
 public class Main {
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
@@ -10,6 +11,8 @@ public class Main {
 		userView.init();
 
 		do {
+			System.out.print("\033[H\033[2J");
+			System.out.flush();
 			System.out.println(
 				"1. Create User Account\n" +
 				"2. Login\n" +
@@ -66,7 +69,7 @@ public class Main {
 					if(userView.updateUser(isLoggedIn)) {
 						System.out.println("Success");
 					} else {
-						System.out.println("Fail");
+						System.out.println("Fail to update user");
 					}
 
 					Utils.promptEnterKey();
